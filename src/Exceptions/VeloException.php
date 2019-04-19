@@ -1,8 +1,9 @@
 <?php
+
 namespace Earnould\LaravelVeloApi\Exceptions;
- 
-use \Exception;
- 
+
+use Exception;
+
 class VeloException extends Exception
 {
     public function __construct($message, $code = 400)

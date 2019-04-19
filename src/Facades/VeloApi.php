@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 namespace Earnould\LaravelVeloApi\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class VeloApi extends Facade {
+class VeloApi extends Facade
+{
     /**
-     * Get VeloFacade
+     * Get VeloFacade.
      *
      * @return void
      */

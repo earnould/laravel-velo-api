@@ -1,17 +1,19 @@
 <?php
+
 namespace Earnould\LaravelVeloApi\Tests;
 
 use Illuminate\Support\Collection;
-use Earnould\LaravelVeloApi\Tests\TestCase;
 
-class VeloTest extends TestCase 
+class VeloTest extends TestCase
 {
     protected function setUp() : void
     {
         parent::setUp();
     }
+
     /** @test */
-    public function it_can_retrieve_all_stations(){
+    public function it_can_retrieve_all_stations()
+    {
         $mock = $this->mockVelo([$this->accessTokenResponse, $this->stationsResponse]);
 
         $stations = $mock->stations();
@@ -23,7 +25,8 @@ class VeloTest extends TestCase
     }
 
     /** @test */
-    public function it_can_retrieve_all_station_statuses(){
+    public function it_can_retrieve_all_station_statuses()
+    {
         $mock = $this->mockVelo([$this->accessTokenResponse, $this->stationsStatusesResponse]);
 
         $stationsStatuses = $mock->stationsStatuses();

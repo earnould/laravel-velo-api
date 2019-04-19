@@ -19,12 +19,12 @@ trait TestHelper
 
     public function getFixturesPath()
     {
-        return $this->getTestPath() . 'fixtures/';
+        return $this->getTestPath().'fixtures/';
     }
 
     public function getFixture($fixture_name)
     {
-        return file_get_contents($this->getFixturesPath() . $fixture_name . '.json');
+        return file_get_contents($this->getFixturesPath().$fixture_name.'.json');
     }
 
     public function getAccessTokenFixture()
@@ -44,18 +44,18 @@ trait TestHelper
 
     public function mockVelo(array $responseHandlers)
     {
-        $mock    = new MockHandler($responseHandlers);
+        $mock = new MockHandler($responseHandlers);
         $handler = HandlerStack::create($mock);
-        $client  = new Client(['handler' => $handler]);
+        $client = new Client(['handler' => $handler]);
 
         return new Velo(new VeloClient($client));
     }
 
     public function mockVeloClient(array $responseHandlers)
     {
-        $mock    = new MockHandler($responseHandlers);
+        $mock = new MockHandler($responseHandlers);
         $handler = HandlerStack::create($mock);
-        $client  = new Client(['handler' => $handler]);
+        $client = new Client(['handler' => $handler]);
 
         return new VeloClient($client);
     }

@@ -1,7 +1,7 @@
 <?php
+
 namespace Earnould\LaravelVeloApi\Tests;
 
-use Closure;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -14,27 +14,27 @@ class VeloClientTest extends TestCase
     {
         parent::setUp();
 
-        $this->accessToken = "YWM4ZGRlZDA4MWQxNDM4MmMyOGRjNGQ3YTI1NzE3NjRhMTNiODlhZTM2ZmFlNmVhOTA1ZTMxMDQ3OWZlOTEzYw";
-        
+        $this->accessToken = 'YWM4ZGRlZDA4MWQxNDM4MmMyOGRjNGQ3YTI1NzE3NjRhMTNiODlhZTM2ZmFlNmVhOTA1ZTMxMDQ3OWZlOTEzYw';
+
         $this->veloClient = new VeloClient(new Client());
     }
 
-    /** 
-     * @test 
-    */
+    /**
+     * @test
+     */
     public function it_returns_a_valid_token()
     {
         $mock = $this->mockVeloClient([$this->accessTokenResponse]);
         $access_token = $mock->getAccessToken();
 
         $this->assertSame($this->accessToken, $mock->getAccessToken());
-        $this->assertTrue(is_string($access_token), "Got a " . gettype($access_token) . " instead of a string.");
+        $this->assertTrue(is_string($access_token), 'Got a '.gettype($access_token).' instead of a string.');
         $this->assertStringContainsString($this->getAccessTokenFixture(), Cache::get('access_token'));
     }
 
-    /** 
-     * @test 
-    */
+    /**
+     * @test
+     */
     public function it_returns_no_valid_token()
     {
         $mock = $this->mockVeloClient([$this->emptyAccessTokenResponse]);
@@ -45,7 +45,7 @@ class VeloClientTest extends TestCase
 
     /** @test */
     public function it_fetches_stations()
-    {   
+    {
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse]);
         $stations = $mock->fetchStations();
 
@@ -76,7 +76,7 @@ class VeloClientTest extends TestCase
     {
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsStatusesResponse]);
         $stations_statuses = $mock->fetchStationsStatuses();
-        
+
         $this->assertInstanceOf(Collection::class, $stations_statuses);
         $this->assertArrayHasKey('status', get_object_vars($stations_statuses->first()));
     }
