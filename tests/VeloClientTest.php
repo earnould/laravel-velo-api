@@ -44,14 +44,6 @@ class VeloClientTest extends TestCase
     }
 
     /** @test */
-    public function it_prepares_the_default_api_uri()
-    {
-        $uri = $this->veloClient->prepareUri('stations');
-
-        $this->assertSame($this->api_url . '/stations' . $this->apiResponseFormat, $uri);
-    }
-
-    /** @test */
     public function it_fetches_stations()
     {   
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse]);
