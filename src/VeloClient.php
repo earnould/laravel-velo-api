@@ -9,6 +9,13 @@ use Earnould\LaravelVeloApi\Exceptions\VeloException;
 
 class VeloClient
 {
+    private $guzzleClient;
+    private $client_id;
+    private $client_secret;
+    private $token_url;
+    private $api_url;
+    private $apiResponseFormat;
+
     public function __construct(Client $client = null)
     {
         $this->guzzleClient = $client ?: new Client();
@@ -49,7 +56,7 @@ class VeloClient
      *
      * @return void
      */
-    public function getAccessToken()
+    public function getAccessToken() : string
     {
         return Cache::remember('access_token', 55, Closure::fromCallable([$this, 'requestAccessToken']));
     }
@@ -57,10 +64,10 @@ class VeloClient
     /**
      * Prepare the uri for a request
      *
-     * @param [type] $resource
+     * @param $resource
      * @return string
      */
-    function prepareUri($resource) : string
+    private function prepareUri($resource) : string
     {
         $uri = $this->api_url . '/' . $resource . $this->apiResponseFormat;
 
@@ -72,7 +79,7 @@ class VeloClient
      *
      * @return Collection
      */
-    function fetchStations() : Collection
+    public function fetchStations() : Collection
     {
         $response = $this->guzzleClient->get($this->prepareUri('stations'), [
             'headers' => [
@@ -96,7 +103,7 @@ class VeloClient
      *
      * @return Collection
      */
-    function fetchStationsStatuses() : Collection
+    public function fetchStationsStatuses() : Collection
     {
         $response = $this->guzzleClient->get($this->prepareUri('stations/status'), [
             'headers' => [
