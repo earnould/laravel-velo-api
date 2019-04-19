@@ -1,0 +1,62 @@
+<?php
+
+namespace Earnould\LaravelVeloApi\Tests;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use Earnould\LaravelVeloApi\Velo;
+use GuzzleHttp\Handler\MockHandler;
+use Earnould\LaravelVeloApi\VeloClient;
+
+trait TestHelper
+{
+    protected $apiClient;
+
+    public function getTestPath()
+    {
+        return __DIR__.'/';
+    }
+
+    public function getFixturesPath()
+    {
+        return $this->getTestPath() . 'fixtures/';
+    }
+
+    public function getFixture($fixture_name)
+    {
+        return file_get_contents($this->getFixturesPath() . $fixture_name . '.json');
+    }
+
+    public function getAccessTokenFixture()
+    {
+        return json_decode($this->getFixture('access_token'))->access_token;
+    }
+
+    public function getStationsFixture()
+    {
+        return json_decode($this->getFixture('stations'))->stations;
+    }
+
+    public function getStationsStatusesFixture()
+    {
+        return json_decode($this->getFixture('stations_statuses'))->stationsStatus;
+    }
+
+    public function mockVelo(array $responseHandlers)
+    {
+        $mock    = new MockHandler($responseHandlers);
+        $handler = HandlerStack::create($mock);
+        $client  = new Client(['handler' => $handler]);
+
+        return new Velo(new VeloClient($client));
+    }
+
+    public function mockVeloClient(array $responseHandlers)
+    {
+        $mock    = new MockHandler($responseHandlers);
+        $handler = HandlerStack::create($mock);
+        $client  = new Client(['handler' => $handler]);
+
+        return new VeloClient($client);
+    }
+}

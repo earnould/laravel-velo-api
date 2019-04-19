@@ -1,0 +1,60 @@
+{
+    "wrongStations": [
+        {
+            "id": "036",
+            "address": "Schuttershofstraat n° 2",
+            "addressNumber": null,
+            "zipCode": "2000",
+            "districtCode": null,
+            "districtName": null,
+            "altitude": null,
+            "location": {
+                "lat": "51.2163878210059",
+                "lon": "4.40593043087013"
+            },
+            "stationType": "BIKE"
+        },
+        {
+            "id": "033",
+            "address": "Hessenplein n° 2",
+            "addressNumber": null,
+            "zipCode": "2000",
+            "districtCode": null,
+            "districtName": null,
+            "altitude": null,
+            "location": {
+                "lat": "51.226218373722870000",
+                "lon": "4.409645771552839000"
+            },
+            "stationType": "BIKE"
+        },
+        {
+            "id": "159",
+            "address": "Boudewijnsstraat",
+            "addressNumber": null,
+            "zipCode": "2018",
+            "districtCode": null,
+            "districtName": null,
+            "altitude": null,
+            "location": {
+                "lat": "51.205596",
+                "lon": "4.399275"
+            },
+            "stationType": "BIKE"
+        },
+        {
+            "id": "034",
+            "address": "Leuvenstraat - Waalsekaai",
+            "addressNumber": null,
+            "zipCode": "2000",
+            "districtCode": null,
+            "districtName": null,
+            "altitude": null,
+            "location": {
+                "lat": "51.211015066009840000",
+                "lon": "4.390343681438131000"
+            },
+            "stationType": "BIKE"
+        }
+    ]
+}

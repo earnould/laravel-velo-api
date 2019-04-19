@@ -1,0 +1,36 @@
+{
+    "stationsStatus": [
+        {
+            "id": "033",
+            "status": "OPN",
+            "availability": {
+                "bikes": 13,
+                "slots": 8
+            }
+        },
+        {
+            "id": "036",
+            "status": "OPN",
+            "availability": {
+                "bikes": 0,
+                "slots": 21
+            }
+        },
+        {
+            "id": "159",
+            "status": "OPN",
+            "availability": {
+                "bikes": 18,
+                "slots": 12
+            }
+        },
+        {
+            "id": "034",
+            "status": "OPN",
+            "availability": {
+                "bikes": 8,
+                "slots": 19
+            }
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+vendor
+html
+build
+composer.lock
+coverage.clover
+.phpunit.result.cache
