@@ -11,11 +11,13 @@ class Velo
         $this->veloClient = $veloClient;
     }
 
-    public function stations(){
+    public function stations()
+    {
         return $this->veloClient->fetchStations();
     }
 
-    public function stationsStatuses(){
+    public function stationsStatuses()
+    {
         return $this->veloClient->fetchStationsStatuses();
     }
 }

@@ -4,7 +4,7 @@ namespace Earnould\LaravelVeloApi;
 
 use Illuminate\Support\ServiceProvider;
 
-class VeloServiceProvider extends ServiceProvider 
+class VeloServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -13,7 +13,7 @@ class VeloServiceProvider extends ServiceProvider
         ], 'config');
     }
 
-     /**
+    /**
      * Register the service provider.
      */
     public function register()
