@@ -14,12 +14,14 @@ class Velo
     public function stations()
     {
         $stations = $this->veloClient->fetchStations();
+
         return $stations;
     }
 
     public function stationsStatuses()
     {
         $stationsStatuses = $this->veloClient->fetchStationsStatuses();
+
         return $stationsStatuses;
     }
 }
