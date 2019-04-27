@@ -40,7 +40,7 @@
                 "Earnould\\LaravelVeloApi\\VeloServiceProvider"
             ],
             "aliases": {
-                "Velo": "Earnould\\LaravelVeloApi\\VeloApi"
+                "Velo": "Earnould\\LaravelVeloApi\\Velo"
             }
         }
     }
