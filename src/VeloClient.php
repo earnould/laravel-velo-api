@@ -86,7 +86,7 @@ class VeloClient
                 'Authorization' => 'Bearer '.$this->getAccessToken(),
             ],
         ]);
-        
+
         try {
             $stations = json_decode($response->getBody()->getContents())->stations;
         } catch (\ErrorException $e) {
@@ -123,8 +123,8 @@ class VeloClient
         $stations = $this->fetchStations();
         $statuses = $this->fetchStationsStatuses();
 
-        $stationsWithStatus = $stations->map(function($station) use($statuses){
-            return (object) array_merge((array)$station, (array) collect($statuses)->firstWhere('id', $station->id));
+        $stationsWithStatus = $stations->map(function ($station) use ($statuses) {
+            return (object) array_merge((array) $station, (array) collect($statuses)->firstWhere('id', $station->id));
         });
 
         return $stationsWithStatus;
