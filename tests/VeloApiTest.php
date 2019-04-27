@@ -3,8 +3,8 @@
 namespace Earnould\LaravelVeloApi\Tests\Unit;
 
 use Illuminate\Support\Collection;
-use Earnould\LaravelVeloApi\Tests\TestCase;
 use Earnould\LaravelVeloApi\Facades\Velo;
+use Earnould\LaravelVeloApi\Tests\TestCase;
 
 class VeloApiTest extends TestCase
 {
