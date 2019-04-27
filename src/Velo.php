@@ -24,4 +24,9 @@ class Velo
 
         return $stationsStatuses;
     }
+
+    public function stationsWithStatus()
+    {
+        return $this->veloClient->fetchStationsWithStatus();
+    }
 }

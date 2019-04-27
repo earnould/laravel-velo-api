@@ -48,7 +48,6 @@ class VeloClientTest extends TestCase
     {
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse]);
         $stations = $mock->fetchStations();
-
         $this->assertInstanceOf(Collection::class, $stations);
         $this->assertArrayHasKey('name', get_object_vars($stations->first()));
     }
@@ -79,6 +78,17 @@ class VeloClientTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $stations_statuses);
         $this->assertArrayHasKey('status', get_object_vars($stations_statuses->first()));
+    }
+
+    /** @test */
+    public function it_fetches_stations_with_statuses()
+    {
+        $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse, $this->stationsStatusesResponse]);
+        $stations_with_statuses = $mock->fetchStationsWithStatus();
+
+        $this->assertInstanceOf(Collection::class, $stations_with_statuses);
+        $this->assertArrayHasKey('status', get_object_vars($stations_with_statuses->first()));
+        $this->assertArrayHasKey('name', get_object_vars($stations_with_statuses->first()));
     }
 
     /** @test */
