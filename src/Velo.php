@@ -4,7 +4,7 @@ namespace Earnould\LaravelVeloApi;
 
 class Velo
 {
-    protected $client;
+    protected $veloClient;
 
     public function __construct(VeloClient $veloClient)
     {
@@ -13,11 +13,13 @@ class Velo
 
     public function stations()
     {
-        return $this->veloClient->fetchStations();
+        $stations = $this->veloClient->fetchStations();
+        return $stations;
     }
 
     public function stationsStatuses()
     {
-        return $this->veloClient->fetchStationsStatuses();
+        $stationsStatuses = $this->veloClient->fetchStationsStatuses();
+        return $stationsStatuses;
     }
 }
