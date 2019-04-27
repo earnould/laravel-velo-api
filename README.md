@@ -24,20 +24,18 @@ You'll need to publish the config file with:
 php artisan vendor:publish --provider="Earnould\LaravelVeloApi\VeloServiceProvider" --tag="config"
 ```
 
-This is the content of the published config file:
+This allows you to define the client id and secret in your .env file like this:
 
-```php
-return [
-    'client_id' => env('VELO_CLIENT_ID', ''),
-    'client_secret' => env('VELO_CLIENT_SECRET', ''),
-];
+```
+VELO_CLIENT_ID = ''
+VELO_CLIENT_SECRET = ''
 ```
 
 This package allows you to connect to the Velo Antwerp API. For now there are only two sources available `stations` and `stationsStatuses`. The stations resource speaks for itself. The stationsStatuses resource returns the availability of all stations. The API requires a client_id and client_secret to fetch these results.
 
 A quick overview:
 
-You can retrieve all Velo resources using the `Earnould\LaravelVeloApi\Facades\VeloApi` facade.
+You can retrieve all Velo resources using the `Earnould\LaravelVeloApi\Facades\Velo` facade.
 
 Retrieves all Velo stations in Antwerp
 ```php
@@ -101,29 +99,21 @@ If you've found a security issue please mail [contact@evertarnould.be](mailto:co
 
 Please see [CHANGELOG](CHANGELOG.md) for more information about recent changes.
 
-## Upgrading
-
-Please see [UPGRADING](UPGRADING.md) for details.
-
 ## Testing
 
 ``` bash
-composer test
+vendor/bin/phpunit
 ```
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email contact@evertarnould.be instead of using the issue tracker.
+If you discover any security related issues, please email [contact@evertarnould.be](mailto:contact@evertarnould.be) instead of using the issue tracker.
 
 ## Credits
 
-- [Evert Arnould](https://github.com/freekmurze)
+- [Evert Arnould](https://github.com/earnould)
 - [All Contributors](../../contributors)
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
