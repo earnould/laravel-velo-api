@@ -117,4 +117,16 @@ class VeloClient
 
         return collect($stationsStatuses);
     }
+
+    public function fetchStationsWithStatus()
+    {
+        $stations = $this->fetchStations();
+        $statuses = $this->fetchStationsStatuses();
+
+        $stationsWithStatus = $stations->map(function ($station) use ($statuses) {
+            return (object) array_merge((array) $station, (array) collect($statuses)->firstWhere('id', $station->id));
+        });
+
+        return $stationsWithStatus;
+    }
 }
