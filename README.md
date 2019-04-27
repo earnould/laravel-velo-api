@@ -41,7 +41,7 @@ You can retrieve all Velo resources using the `Earnould\LaravelVeloApi\Facades\V
 
 Retrieves all Velo stations in Antwerp
 ```php
-VeloApi::stations();
+Velo::stations();
 ```
 Returns a collection of all stations
 ```php
@@ -69,7 +69,7 @@ ___
 Requests all Velo stations statuses in Antwerp
 
 ```php
-VeloApi::stationsStatuses();
+Velo::stationsStatuses();
 ```
 Returns a collection of all stations statuses
 

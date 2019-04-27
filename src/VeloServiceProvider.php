@@ -20,7 +20,7 @@ class VeloServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/laravel-velo-api.php', 'laravel-velo-api');
 
-        $this->app->bind('velo-api', function () {
+        $this->app->bind('velo', function () {
             return new Velo(new VeloClient());
         });
     }
