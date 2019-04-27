@@ -76,7 +76,19 @@ Returns a collection of all stations statuses
 ```php
 Collection {
     0 => {
-        +"id": "001"
+        +"id": "036"
+        +"name": "036- Bourla"
+        +"address": "Schuttershofstraat n° 2"
+        +"addressNumber": null
+        +"zipCode": "2000"
+        +"districtCode": null
+        +"districtName": null
+        +"altitude": null
+        +"location": {
+            +"lat": "51.2163878210059"
+            +"lon": "4.40593043087013"
+        }
+        +"stationType": "BIKE"
         +"status": "OPN"
         +"availability": {
             +"bikes": 22
@@ -90,6 +102,29 @@ Collection {
 **+status**
 
 The status will be `OPN` for open stations and `CLS` for Closed stations.
+
+___
+
+Requests all Velo stations with status in Antwerp
+
+```php
+Velo::stationsStatuses();
+```
+Returns a collection of all stations statuses
+
+```php
+Collection {
+    0 => {
+        +"id": "001"
+        +"status": "OPN"
+        +"availability": {
+            +"bikes": 22
+            +"slots": 10
+        }
+    },
+    1 => { ... }
+}
+```
 ___
 ## Documentation
 
