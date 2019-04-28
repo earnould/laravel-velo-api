@@ -3,6 +3,9 @@
 namespace Earnould\LaravelVeloApi\Tests;
 
 use Illuminate\Support\Collection;
+use Earnould\LaravelVeloApi\VeloClientInterface;
+use Earnould\LaravelVeloApi\Facades\VeloStations;
+use Earnould\LaravelVeloApi\Tests\Mocks\VeloClientMock;
 
 class VeloTest extends TestCase
 {
@@ -14,23 +17,32 @@ class VeloTest extends TestCase
     /** @test */
     public function it_can_retrieve_all_stations()
     {
-        $mock = $this->mockVelo([$this->accessTokenResponse, $this->stationsResponse]);
+        $stations = VeloStations::stations();
 
-        $stations = $mock->stations();
         $this->assertInstanceOf(Collection::class, $stations);
 
         $stationsMock = collect($this->getStationsFixture());
+
         $this->assertInstanceOf(Collection::class, $stationsMock);
-        $this->assertEquals($stationsMock, $stations);
+        $this->assertEquals(count($stationsMock), count($stations));
     }
 
     /** @test */
     public function it_can_retrieve_all_station_statuses()
     {
-        $mock = $this->mockVelo([$this->accessTokenResponse, $this->stationsStatusesResponse]);
+        $stations_statuses = VeloStations::stationsStatuses();
 
-        $stationsStatuses = $mock->stationsStatuses();
-        $this->assertInstanceOf(Collection::class, $stationsStatuses);
-        $this->assertEquals(collect($this->getStationsStatusesFixture()), $stationsStatuses);
+        $this->assertInstanceOf(Collection::class, $stations_statuses);
+        $this->assertEquals(count(collect($this->getStationsStatusesFixture())), count($stations_statuses));
+    }
+
+    /** @test */
+    public function it_can_retrieve_all_stations_with_their_status()
+    {
+        $stations_with_statuses = VeloStations::stationsWithStatus();
+
+        $this->assertInstanceOf(Collection::class, $stations_with_statuses);
+        $this->assertNotNull($stations_with_statuses->first()->status);
+        $this->assertNotNull($stations_with_statuses->first()->name);
     }
 }

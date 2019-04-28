@@ -1,4 +1,4 @@
-# Pul Velo API resources in your Laravel app
+# Pull Velo API resources in your Laravel app
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/earnould/laravel-velo-api.svg?style=flat-square)](https://packagist.org/packages/earnould/laravel-velo-api)
 [![Code coverage](https://scrutinizer-ci.com/g/earnould/laravel-velo-api/badges/coverage.png)](https://scrutinizer-ci.com/g/earnould/laravel-velo-api)

@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Earnould\LaravelVeloApi\Facades\Velo;
 use Earnould\LaravelVeloApi\Tests\TestCase;
 
-class VeloApiTest extends TestCase
+class VeloFacadeTest extends TestCase
 {
     /** @test */
     public function it_can_retrieve_all_stations()
@@ -18,5 +18,11 @@ class VeloApiTest extends TestCase
     public function it_can_retrieve_all_station_statuses()
     {
         Velo::shouldReceive('stationsStatuses')->andReturn(Collection::class);
+    }
+
+    /** @test */
+    public function it_can_retrieve_all_station_with_status()
+    {
+        Velo::shouldReceive('stationsWithStatus')->andReturn(Collection::class);
     }
 }

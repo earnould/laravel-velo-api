@@ -20,13 +20,13 @@ abstract class TestCase extends Orchestra
         $this->api_url = 'https://antwerp.pub.api.smartbike.com/api/en/v3';
         $this->apiResponseFormat = '.json';
 
-        $this->accessTokenResponse = new Response(200, [], $this->getFixture('access_token'));
-        $this->stationsResponse = new Response(200, [], $this->getFixture('stations'));
-        $this->stationsStatusesResponse = new Response(200, [], $this->getFixture('stations_statuses'));
+        // $this->accessTokenResponse = new Response(200, [], $this->getFixture('access_token'));
+        // $this->stationsResponse = new Response(200, [], $this->getFixture('stations'));
+        // $this->stationsStatusesResponse = new Response(200, [], $this->getFixture('stations_statuses'));
 
-        $this->emptyAccessTokenResponse = new Response(200, [], $this->getFixture('empty_access_token'));
-        $this->faultyStationsResponse = new Response(200, [], $this->getFixture('faulty_stations'));
-        $this->faultyStationsStatusesResponse = new Response(200, [], $this->getFixture('faulty_stations_statuses'));
+        // $this->emptyAccessTokenResponse = new Response(200, [], $this->getFixture('empty_access_token'));
+        // $this->faultyStationsResponse = new Response(200, [], $this->getFixture('faulty_stations'));
+        // $this->faultyStationsStatusesResponse = new Response(200, [], $this->getFixture('faulty_stations_statuses'));
     }
 
     /**

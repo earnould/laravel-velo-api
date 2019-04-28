@@ -6,9 +6,10 @@ use Closure;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Earnould\LaravelVeloApi\VeloClientInterface;
 use Earnould\LaravelVeloApi\Exceptions\VeloException;
 
-class VeloClient
+class VeloClient implements VeloClientInterface
 {
     private $guzzleClient;
     private $client_id;
@@ -19,7 +20,7 @@ class VeloClient
 
     public function __construct(Client $client = null)
     {
-        $this->guzzleClient = $client ?: new Client();
+        $this->guzzleClient = $client ?? new Client();
         $this->client_id = config('laravel-velo-api.client_id');
         $this->client_secret = config('laravel-velo-api.client_secret');
         $this->token_url = 'https://antwerp.pub.api.smartbike.com/oauth/v2/token';
@@ -88,7 +89,7 @@ class VeloClient
         ]);
 
         try {
-            $stations = json_decode($response->getBody()->getContents())->stations;
+            $stations = json_decode($response->getBody()->getContents(), true)['stations'];
         } catch (\ErrorException $e) {
             throw new VeloException($e->getMessage(), $e->getCode());
         }
@@ -110,7 +111,7 @@ class VeloClient
         ]);
 
         try {
-            $stationsStatuses = json_decode($response->getBody()->getContents())->stationsStatus;
+            $stationsStatuses = json_decode($response->getBody()->getContents(), true)['stationsStatus'];
         } catch (\ErrorException $e) {
             throw new VeloException($e->getMessage(), $e->getCode());
         }
@@ -118,15 +119,4 @@ class VeloClient
         return collect($stationsStatuses);
     }
 
-    public function fetchStationsWithStatus()
-    {
-        $stations = $this->fetchStations();
-        $statuses = $this->fetchStationsStatuses();
-
-        $stationsWithStatus = $stations->map(function ($station) use ($statuses) {
-            return (object) array_merge((array) $station, (array) collect($statuses)->firstWhere('id', $station->id));
-        });
-
-        return $stationsWithStatus;
-    }
 }

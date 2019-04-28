@@ -4,7 +4,7 @@ namespace Earnould\LaravelVeloApi\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Velo extends Facade
+class VeloStations extends Facade
 {
     /**
      * Get VeloFacade.
@@ -13,6 +13,6 @@ class Velo extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'velo';
+        return 'velo-stations';
     }
 }

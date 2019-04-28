@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Earnould\LaravelVeloApi\VeloClient;
+use Earnould\LaravelVeloApi\Resources\Station;
 use Earnould\LaravelVeloApi\Exceptions\VeloException;
 
 class VeloClientTest extends TestCase
@@ -48,8 +49,10 @@ class VeloClientTest extends TestCase
     {
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse]);
         $stations = $mock->fetchStations();
+        
         $this->assertInstanceOf(Collection::class, $stations);
-        $this->assertArrayHasKey('name', get_object_vars($stations->first()));
+        $this->assertInstanceOf(Station::class, $stations->first());
+        $this->assertNotNull($stations->first()->name);
     }
 
     /** @test */
@@ -77,18 +80,7 @@ class VeloClientTest extends TestCase
         $stations_statuses = $mock->fetchStationsStatuses();
 
         $this->assertInstanceOf(Collection::class, $stations_statuses);
-        $this->assertArrayHasKey('status', get_object_vars($stations_statuses->first()));
-    }
-
-    /** @test */
-    public function it_fetches_stations_with_statuses()
-    {
-        $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse, $this->stationsStatusesResponse]);
-        $stations_with_statuses = $mock->fetchStationsWithStatus();
-
-        $this->assertInstanceOf(Collection::class, $stations_with_statuses);
-        $this->assertArrayHasKey('status', get_object_vars($stations_with_statuses->first()));
-        $this->assertArrayHasKey('name', get_object_vars($stations_with_statuses->first()));
+        $this->assertNotNull($stations_statuses->first()['status']);
     }
 
     /** @test */
@@ -97,6 +89,7 @@ class VeloClientTest extends TestCase
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->faultyStationsStatusesResponse]);
 
         $this->expectException(VeloException::class);
+
         $mock->fetchStationsStatuses();
     }
 
@@ -106,6 +99,18 @@ class VeloClientTest extends TestCase
         $mock = $this->mockVeloClient([$this->emptyAccessTokenResponse, $this->faultyStationsStatusesResponse]);
 
         $this->expectException(VeloException::class);
+
         $mock->fetchStationsStatuses();
+    }
+
+    /** @test */
+    public function it_fetches_stations_with_statuses()
+    {
+        $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse, $this->stationsStatusesResponse]);
+        $stations_with_statuses = $mock->fetchStationsWithStatus();
+
+        $this->assertInstanceOf(Collection::class, $stations_with_statuses);
+        $this->assertNotNull($stations_with_statuses->first()->status);
+        $this->assertNotNull($stations_with_statuses->first()->name);
     }
 }
