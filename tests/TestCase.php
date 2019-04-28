@@ -19,7 +19,7 @@ abstract class TestCase extends Orchestra
         $this->token_url = 'https://antwerp.pub.api.smartbike.com/oauth/v2/token';
         $this->api_url = 'https://antwerp.pub.api.smartbike.com/api/en/v3';
         $this->apiResponseFormat = '.json';
-        
+
         $this->accessTokenResponse = new Response(200, [], $this->getTestCaseFixture('access_token'));
         $this->stationsResponse = new Response(200, [], $this->getTestCaseFixture('stations'));
         $this->stationsStatusesResponse = new Response(200, [], $this->getTestCaseFixture('stations_statuses'));
