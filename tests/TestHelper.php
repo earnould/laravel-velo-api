@@ -4,7 +4,6 @@ namespace Earnould\LaravelVeloApi\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use Earnould\LaravelVeloApi\Velo;
 use GuzzleHttp\Handler\MockHandler;
 use Earnould\LaravelVeloApi\VeloClient;
 
@@ -42,13 +41,9 @@ trait TestHelper
         return $this->getFixture('stations_statuses')->stationsStatus;
     }
 
-    public function mockVelo(array $responseHandlers)
+    public function getTestCaseFixture($fixture_name)
     {
-        $mock = new MockHandler($responseHandlers);
-        $handler = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handler]);
-
-        return new Velo(new VeloClient($client));
+        return json_encode($this->getFixture($fixture_name));
     }
 
     public function mockVeloClient(array $responseHandlers)

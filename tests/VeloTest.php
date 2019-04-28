@@ -3,9 +3,7 @@
 namespace Earnould\LaravelVeloApi\Tests;
 
 use Illuminate\Support\Collection;
-use Earnould\LaravelVeloApi\VeloClientInterface;
 use Earnould\LaravelVeloApi\Facades\VeloStations;
-use Earnould\LaravelVeloApi\Tests\Mocks\VeloClientMock;
 
 class VeloTest extends TestCase
 {
@@ -17,7 +15,7 @@ class VeloTest extends TestCase
     /** @test */
     public function it_can_retrieve_all_stations()
     {
-        $stations = VeloStations::stations();
+        $stations = VeloStations::all();
 
         $this->assertInstanceOf(Collection::class, $stations);
 
@@ -30,7 +28,7 @@ class VeloTest extends TestCase
     /** @test */
     public function it_can_retrieve_all_station_statuses()
     {
-        $stations_statuses = VeloStations::stationsStatuses();
+        $stations_statuses = VeloStations::statuses();
 
         $this->assertInstanceOf(Collection::class, $stations_statuses);
         $this->assertEquals(count(collect($this->getStationsStatusesFixture())), count($stations_statuses));
@@ -39,7 +37,7 @@ class VeloTest extends TestCase
     /** @test */
     public function it_can_retrieve_all_stations_with_their_status()
     {
-        $stations_with_statuses = VeloStations::stationsWithStatus();
+        $stations_with_statuses = VeloStations::allWithStatus();
 
         $this->assertInstanceOf(Collection::class, $stations_with_statuses);
         $this->assertNotNull($stations_with_statuses->first()->status);

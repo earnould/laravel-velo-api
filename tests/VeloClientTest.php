@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Earnould\LaravelVeloApi\VeloClient;
-use Earnould\LaravelVeloApi\Resources\Station;
 use Earnould\LaravelVeloApi\Exceptions\VeloException;
 
 class VeloClientTest extends TestCase
@@ -49,10 +48,9 @@ class VeloClientTest extends TestCase
     {
         $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse]);
         $stations = $mock->fetchStations();
-        
+
         $this->assertInstanceOf(Collection::class, $stations);
-        $this->assertInstanceOf(Station::class, $stations->first());
-        $this->assertNotNull($stations->first()->name);
+        $this->assertArrayHasKey('name', $stations->first());
     }
 
     /** @test */
@@ -101,16 +99,5 @@ class VeloClientTest extends TestCase
         $this->expectException(VeloException::class);
 
         $mock->fetchStationsStatuses();
-    }
-
-    /** @test */
-    public function it_fetches_stations_with_statuses()
-    {
-        $mock = $this->mockVeloClient([$this->accessTokenResponse, $this->stationsResponse, $this->stationsStatusesResponse]);
-        $stations_with_statuses = $mock->fetchStationsWithStatus();
-
-        $this->assertInstanceOf(Collection::class, $stations_with_statuses);
-        $this->assertNotNull($stations_with_statuses->first()->status);
-        $this->assertNotNull($stations_with_statuses->first()->name);
     }
 }

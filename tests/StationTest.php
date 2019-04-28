@@ -2,6 +2,8 @@
 
 namespace Earnould\LaravelVeloApi\Tests;
 
+use Earnould\LaravelVeloApi\Station;
+
 class StationTest extends TestCase
 {
     protected function setUp() : void
@@ -12,9 +14,7 @@ class StationTest extends TestCase
     /** @test */
     public function it_can_refresh_a_stations_status()
     {
-        $mock = $this->mockVelo([$this->accessTokenResponse, $this->stationsStatusesResponse]);
-
-        $station = new Station(json_decode($this->getStationsFixture(), true), $mock);
+        $station = new Station(json_decode(json_encode($this->getStationsFixture()), true)[0]);
 
         $this->assertNull($station->status);
 

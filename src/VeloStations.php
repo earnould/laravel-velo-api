@@ -13,7 +13,7 @@ class VeloStations
         $this->veloClient = $veloClient;
     }
 
-    public function stations()
+    public function all()
     {
         $stations = $this->veloClient->fetchStations()->map(function($station){
             return new Station($station);
@@ -22,15 +22,10 @@ class VeloStations
         return $stations;
     }
 
-    public function stationsStatuses()
+    public function allWithStatus()
     {
-        return $this->veloClient->fetchStationsStatuses();
-    }
-
-    public function stationsWithStatus()
-    {
-        $stations = $this->stations();
-        $statuses = $this->stationsStatuses();
+        $stations = $this->all();
+        $statuses = $this->statuses();
 
         $stationsWithStatus = $stations->map(function ($station) use ($statuses) {
             $station->setStatus(collect($statuses)->firstWhere('id', $station->id));
@@ -38,5 +33,10 @@ class VeloStations
         });
 
         return $stationsWithStatus;
+    }
+
+    public function statuses()
+    {
+        return $this->veloClient->fetchStationsStatuses();
     }
 }

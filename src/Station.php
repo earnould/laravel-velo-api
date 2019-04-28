@@ -1,33 +1,21 @@
 <?php
 namespace Earnould\LaravelVeloApi;
 
-use Earnould\LaravelVeloApi\VeloClient;
+use Earnould\LaravelVeloApi\Facades\VeloStations;
 
 class Station
 {
     protected $values = [];
-    protected $velo;
 
     public function __construct(array $args)
     {
         $this->values = $args;
     }
 
-    // public static function all()
-    // {
-    //     $stations = VeloClient::fetchStations();
-    //     $stations = collect($stations)->map(function($station){
-    //         return new self($station, $this->velo);
-    //     });
-
-    //     return $stations;
-    // }
-
     public function refreshStatus()
     {
-        $statuses = VeloStations::stationsStatuses();
-
-        $this->setStatus(collect($statuses)->firstWhere('id', $this->id));
+        $statuses = VeloStations::statuses();
+        $this->setStatus($statuses->firstWhere('id', $this->id));
 
         return $this;
     }

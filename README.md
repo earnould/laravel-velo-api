@@ -35,94 +35,73 @@ This package allows you to connect to the Velo Antwerp API. For now there are on
 
 A quick overview:
 
-You can retrieve all Velo resources using the `Earnould\LaravelVeloApi\Facades\Velo` facade.
+You can retrieve all Velo station resources using the `Earnould\LaravelVeloApi\Facades\VeloStations` facade.
 
 Retrieves all Velo stations in Antwerp
 ```php
-Velo::stations();
+VeloStations::all();
 ```
-Returns a collection of all stations
+Returns:
 ```php
 Collection {
-    0 => {
-        +"id": "036"
-        +"name": "036- Bourla"
-        +"address": "Schuttershofstraat n° 2"
-        +"addressNumber": null
-        +"zipCode": "2000"
-        +"districtCode": null
-        +"districtName": null
-        +"altitude": null
-        +"location": {
-            +"lat": "51.2163878210059"
-            +"lon": "4.40593043087013"
-        }
-        +"stationType": "BIKE"
-    },
-    1 => { ... }
-}
+  array [
+    0 => Earnould\LaravelVeloApi\Station {
+        [
+            "id" => "036"
+            "name" => "036- Bourla"
+            "address" => "Schuttershofstraat n° 2"
+            "addressNumber" => null
+            "zipCode" => "2000"
+            "districtCode" => null
+            "districtName" => null
+            "altitude" => null
+            "location" => array:2 [
+                "lat" => "51.2163878210059"
+                "lon" => "4.40593043087013"
+            ]
+            "stationType" => "BIKE"
+        ]
+    }
+    ... => Earnould\LaravelVeloApi\Station {...} 
 ```
 ___
 
-Requests all Velo stations statuses in Antwerp
+Requests all Velo stations with their corresponding status
 
 ```php
-Velo::stationsStatuses();
+VeloStations::allWithStatuses();
 ```
-Returns a collection of all stations statuses
-
-```php
-Collection {
-    0 => {
-        +"id": "036"
-        +"name": "036- Bourla"
-        +"address": "Schuttershofstraat n° 2"
-        +"addressNumber": null
-        +"zipCode": "2000"
-        +"districtCode": null
-        +"districtName": null
-        +"altitude": null
-        +"location": {
-            +"lat": "51.2163878210059"
-            +"lon": "4.40593043087013"
-        }
-        +"stationType": "BIKE"
-        +"status": "OPN"
-        +"availability": {
-            +"bikes": 22
-            +"slots": 10
-        }
-    },
-    1 => { ... }
-}
-```
-
-**+status**
-
-The status will be `OPN` for open stations and `CLS` for Closed stations.
-
-___
-
-Requests all Velo stations with status in Antwerp
-
-```php
-Velo::stationsStatuses();
-```
-Returns a collection of all stations statuses
-
+Returns:
 ```php
 Collection {
-    0 => {
-        +"id": "001"
-        +"status": "OPN"
-        +"availability": {
-            +"bikes": 22
-            +"slots": 10
-        }
-    },
-    1 => { ... }
+    [
+        0 => Earnould\LaravelVeloApi\Station {
+            [
+                "id"            => "036"
+                "name"          => "036- Bourla"
+                "address"       => "Schuttershofstraat n° 2"
+                "addressNumber" => null
+                "zipCode"       => "2000"
+                "districtCode"  => null
+                "districtName"  => null
+                "altitude"      => null
+                "location"      => [
+                    "lat"   =>  "51.2163878210059",
+                    "lon"   =>  "4.40593043087013"
+                ]
+                "stationType"  => "BIKE"
+                "status"       => "OPN"
+                "availability" => [
+                    "bikes" =>  19,
+                    "slots" =>  1
+                ]
+            ]
+        ... => Earnould\LaravelVeloApi\Station {...}
+    ]
 }
 ```
+**NOTE:** _The status will be `OPN` for open stations and `CLS` for Closed stations_.
+
 ___
 ## Documentation
 

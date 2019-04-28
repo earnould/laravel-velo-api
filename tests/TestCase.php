@@ -19,14 +19,14 @@ abstract class TestCase extends Orchestra
         $this->token_url = 'https://antwerp.pub.api.smartbike.com/oauth/v2/token';
         $this->api_url = 'https://antwerp.pub.api.smartbike.com/api/en/v3';
         $this->apiResponseFormat = '.json';
+        
+        $this->accessTokenResponse = new Response(200, [], $this->getTestCaseFixture('access_token'));
+        $this->stationsResponse = new Response(200, [], $this->getTestCaseFixture('stations'));
+        $this->stationsStatusesResponse = new Response(200, [], $this->getTestCaseFixture('stations_statuses'));
 
-        // $this->accessTokenResponse = new Response(200, [], $this->getFixture('access_token'));
-        // $this->stationsResponse = new Response(200, [], $this->getFixture('stations'));
-        // $this->stationsStatusesResponse = new Response(200, [], $this->getFixture('stations_statuses'));
-
-        // $this->emptyAccessTokenResponse = new Response(200, [], $this->getFixture('empty_access_token'));
-        // $this->faultyStationsResponse = new Response(200, [], $this->getFixture('faulty_stations'));
-        // $this->faultyStationsStatusesResponse = new Response(200, [], $this->getFixture('faulty_stations_statuses'));
+        $this->emptyAccessTokenResponse = new Response(200, [], $this->getTestCaseFixture('empty_access_token'));
+        $this->faultyStationsResponse = new Response(200, [], $this->getTestCaseFixture('faulty_stations'));
+        $this->faultyStationsStatusesResponse = new Response(200, [], $this->getTestCaseFixture('faulty_stations_statuses'));
     }
 
     /**
