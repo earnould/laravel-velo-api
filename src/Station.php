@@ -1,4 +1,5 @@
 <?php
+
 namespace Earnould\LaravelVeloApi;
 
 use Earnould\LaravelVeloApi\Facades\VeloStations;
@@ -27,11 +28,10 @@ class Station
 
     public function __get($key)
     {
-        if (!isset($this->values[$key])) {
-            return null;
+        if (! isset($this->values[$key])) {
+            return;
         }
 
         return $this->values[$key];
     }
-    
 }

@@ -6,7 +6,6 @@ use Closure;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Earnould\LaravelVeloApi\VeloClientInterface;
 use Earnould\LaravelVeloApi\Exceptions\VeloException;
 
 class VeloClient implements VeloClientInterface
@@ -118,5 +117,4 @@ class VeloClient implements VeloClientInterface
 
         return collect($stationsStatuses);
     }
-
 }

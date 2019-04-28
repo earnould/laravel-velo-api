@@ -2,8 +2,6 @@
 
 namespace Earnould\LaravelVeloApi;
 
-use Earnould\LaravelVeloApi\VeloClientInterface;
-
 class VeloStations
 {
     protected $veloClient;
@@ -15,10 +13,10 @@ class VeloStations
 
     public function all()
     {
-        $stations = $this->veloClient->fetchStations()->map(function($station){
+        $stations = $this->veloClient->fetchStations()->map(function ($station) {
             return new Station($station);
         });
-        
+
         return $stations;
     }
 
@@ -29,6 +27,7 @@ class VeloStations
 
         $stationsWithStatus = $stations->map(function ($station) use ($statuses) {
             $station->setStatus(collect($statuses)->firstWhere('id', $station->id));
+
             return $station;
         });
 

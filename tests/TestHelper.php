@@ -23,7 +23,7 @@ trait TestHelper
 
     public function getFixture($fixture_name)
     {
-        return json_decode(file_get_contents($this->getFixturesPath() . $fixture_name . '.json'));
+        return json_decode(file_get_contents($this->getFixturesPath().$fixture_name.'.json'));
     }
 
     public function getAccessTokenFixture()
